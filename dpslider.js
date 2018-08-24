@@ -1,16 +1,11 @@
 function DPSlider (selector, options) {
-	
+
 	this.selector        = document.querySelector(selector) || document.querySelector('.dp-slider');
 	this.options         = options || {};
 
 	var slider           = this.selector,
-	    sliderOldContent = this.selector.innerHTML,
-	    sliderNewContent = '<div class="dp-slider__wrapper">' + sliderOldContent + '</div>';
 
-		//wrap old content in my element
-		this.selector.innerHTML = sliderNewContent;
-
-	    var wrapperSlider = slider.querySelector('.dp-slider__wrapper'),
+	    wrapperSlider = slider.querySelector('.dp-slider__wrapper'),
 		slides            = wrapperSlider.children,
 		sliderWidth        = 0,
 		selectorWidth       = slider.clientWidth,
@@ -28,7 +23,6 @@ function DPSlider (selector, options) {
 
 	//Each slides for set width slide and calc common width
 	Object.keys(slides).forEach(function(i) {
-
 		//get item width
 		slides[i].style.width = (selectorWidth / slidePerView) + 'px';
 
@@ -42,6 +36,7 @@ function DPSlider (selector, options) {
 
 	this.resetWidth = function() {
 		sliderWidth = 0;
+		slides = wrapperSlider.children;
 
 		//Each slides for set width slide and calc common width
 		Object.keys(slides).forEach(function(i) {
@@ -54,7 +49,7 @@ function DPSlider (selector, options) {
 		});
 
 		//set common width
-		wrapperSlider.style.width = sliderWidth + 'px';		
+		wrapperSlider.style.width = sliderWidth + 'px';
 	};
 
 
@@ -110,7 +105,7 @@ function DPSlider (selector, options) {
 
 				initialTranslate = translateDot;
 			});
-		});			
+		});
 
 	}//end condition dots
 
@@ -121,7 +116,7 @@ function DPSlider (selector, options) {
 		var navEl 	= document.createElement('div'),
 		    prevEl  	= document.createElement('button'),
 		    nextEl 	= document.createElement('button');
-		
+
 		navEl.classList.add('dp-slider__nav');
 		prevEl.classList.add('dp-slider__prev');
 		nextEl.classList.add('dp-slider__next');
@@ -144,7 +139,7 @@ function DPSlider (selector, options) {
 				wrapperSlider.style.transform = "translateX(-"+ initialTranslate + "px)";
 			}
 
-		});			
+		});
 
 		//event prev slide
 		prevEl.addEventListener('click', function () {
@@ -157,7 +152,7 @@ function DPSlider (selector, options) {
 				wrapperSlider.style.transform = "translateX(-"+ initialTranslate + "px)";
 			}
 
-		});	
+		});
 
 	}//end condition nav
 };// end constructor

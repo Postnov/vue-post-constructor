@@ -4,10 +4,9 @@
 	document.addEventListener(eventName, function(e) {
 		e.preventDefault();
 		e.stopPropagation();
-	}, false)
+	}, false);
 
 });
-
 
 
 var App = new Vue({
@@ -21,6 +20,11 @@ var App = new Vue({
         surveyIsVisible: false,
         dropzoneIsActive: false
     },
+
+    updated() {
+        slider.resetWidth();
+    },
+
     computed: {
         printTitle() {
             return this.title;
@@ -57,15 +61,29 @@ var App = new Vue({
             files = [... files];
 
             files.forEach((file, index) => {
-                
+
                 var reader = new FileReader();
 
                 reader.onload = (e) => {
-                    this.photos.push(e.target.result);
+                    if (index < 10 && queue.length < 10) {
+                        this.photos.push(e.target.result);
+                    } else {
+                        reader.abort();
+                        return;
+                    }
                 }
 
                 reader.readAsDataURL(file);
             });
+
+            if (files.length > 10 && this.photos.length === 0) {
+                alert('Можно загрузить только 10 файлов.\nСейчас вы загружаете - ' + files.length + '.\nБудут загружены первые 10 файлов.');
+            } else if (this.photos.length === 10) {
+                alert('Можно загрузить только 10 файлов.\nСейчас в дропзоне уже 10 файлов');
+            } else if (files.length + this.photos.length > 10) {
+                alert('Можно загрузить только 10 файлов. Сейчас в дропзоне уже ' + this.photos.length + '.\nСейчас вы загружаете - ' + files.length + '.\nБудут загружены ' + (10 - this.photos.length) + ' файлов.');
+            }
+
         },
         deleteImage(index) {
             console.log(index);
@@ -76,3 +94,10 @@ var App = new Vue({
 
     }
 });
+
+
+var slider = new DPSlider('.preview-slider', {
+    nav: true,
+    dots: false,
+    sliderPerView: 1
+})

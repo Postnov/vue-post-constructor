@@ -207,6 +207,10 @@ textarea {
 	margin-bottom: 10px;
 }
 
+.preview-slider {
+	overflow: hidden;
+	width: 100%;
+}
 
 .preview-slider__list {
 	padding-left: 0;
@@ -251,6 +255,8 @@ textarea {
   transform: translateX(0);
   overflow: hidden;
   width: 100%;
+  padding-left: 0;
+  list-style: none;
 }
 
 

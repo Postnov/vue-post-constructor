@@ -93,11 +93,11 @@
 
 				<h2 class="preview__title">{{ printTitle || 'Input post title' }}</h2>
 				<p  class="preview__subtitle">{{ printDescribe || 'Input post describe' }}</p>
-				<div v-if="photos.length" class="preview__slider preview-slider">
-					<ul class="preview-slider__list">
-						<li v-for="(src, index) in photos" :key="index" class="preview-slider__item dp-slide">
-							<img v-bind:src="src">
-						</li>
+				<div class="preview__slider preview-slider">
+					<ul class="preview-slider__list dp-slider__wrapper">
+							<li v-for="(src, index) in photos" :key="index" class="preview-slider__item dp-slide">
+								<img v-bind:src="src">
+							</li>
 					</ul>
 				</div>
 
