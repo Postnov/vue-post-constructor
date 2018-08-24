@@ -178,7 +178,7 @@ textarea {
 }
 
 
-#fileElem {
+.droparea__input {
 	display: none;
 }
 

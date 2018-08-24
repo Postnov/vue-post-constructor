@@ -3,8 +3,10 @@ var App = new Vue({
     data: {
         title: '',
         describe: '',
+        surveyTitle: '',
         photos: [],
-        options: []
+        options: [],
+        surveyIsVisible: false
     },
     computed: {
         printTitle() {
@@ -12,6 +14,9 @@ var App = new Vue({
         },
         printDescribe() {
             return this.describe;
+        },
+        printSurveyTitle() {
+            return this.surveyTitle;
         }
     },
     methods: {

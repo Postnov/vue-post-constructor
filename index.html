@@ -31,29 +31,29 @@
 				</div>
 
 				<div class="create__row">
-					<div id="dropzone" class="droparea">
+					<div class="droparea">
 						<span class="droparea__text">Drop image or</span>
-						<input type="file" id="fileElem" multiple accept="image/*">
+						<input type="file" class="droparea__input" multiple accept="image/*">
 						<label class="button btn" for="fileElem">choose image</label>
 
-						<ul id="droplist" class="droparea__list"></ul>
+						<ul v-if="photos.length" class="droparea__list"></ul>
 					</div>
 				</div>
 
-				<div class="create__row">
+				<div  class="create__row">
 					<div class="create__survey create-survey">
-						<button id="add-survey" class="create-survey__btn btn">Add survey</button>
+						<button v-on:click="surveyIsVisible = true" class="create-survey__btn btn">Add survey</button>
 
-						<div id="survey-content" class="create-survey__content">
+						<div v-if="surveyIsVisible" class="create-survey__content">
 
 							<h2>Input servey name</h2>
-							<input type="text" id="title-survey" class="create-survey__title post-field" placeholder="Survey name">
+							<input v-model="surveyTitle" value="" type="text" class="create-survey__title post-field" placeholder="Survey name">
 
-							<ul class="create-survey__list"></ul>
+							<ul v-if="options.length" class="create-survey__list"></ul>
 
 							<div class="survey-buttons">
-								<button id="add-option" class="create-survey__btn-option btn">add option</button>
-								<button id="delete-survey" class="create-survey__btn-option btn btn-danger">delete survey</button>
+								<button class="create-survey__btn-option btn">add option</button>
+								<button v-on:click="surveyIsVisible = false" class="create-survey__btn-option btn btn-danger">delete survey</button>
 							</div>
 						</div>
 					</div>
@@ -75,16 +75,16 @@
 			<div class="preview">
 				<!-- <h1>Post preview</h1> -->
 
-				<h2 id="preview__title" class="preview__title">{{ printTitle || 'Input post title' }}</h2>
-				<p  id="preview__subtitle" class="preview__subtitle">{{ printDescribe || 'Input post describe' }}</p>
-				<div class="preview__slider preview-slider">
-					<ul id="preview-slider-list" class="preview-slider__list"></ul>
+				<h2 class="preview__title">{{ printTitle || 'Input post title' }}</h2>
+				<p  class="preview__subtitle">{{ printDescribe || 'Input post describe' }}</p>
+				<div v-if="photos.length" class="preview__slider preview-slider">
+					<ul class="preview-slider__list"></ul>
 				</div>
 
-				<div class="preview__survey preview-survey hidden">
-					<p class="preview-survey__title">Input survey title</p>
+				<div v-if="surveyIsVisible" class="preview__survey preview-survey">
+					<p class="preview-survey__title">{{printSurveyTitle || 'Input survey title'}}</p>
 
-					<div class="preview-survey__list"></div>
+					<div v-if="options.length" class="preview-survey__list"></div>
 				</div>
 			</div>
 
