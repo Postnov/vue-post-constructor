@@ -15,6 +15,7 @@ var App = new Vue({
         title: '',
         describe: '',
         surveyTitle: '',
+        imagesLimit: 10,
         photos: [],
         options: [],
         surveyIsVisible: false,
@@ -65,7 +66,7 @@ var App = new Vue({
                 var reader = new FileReader();
 
                 reader.onload = (e) => {
-                    if (index < 10 && queue.length < 10) {
+                    if (index < this.imagesLimit && this.photos.length < this.imagesLimit) {
                         this.photos.push(e.target.result);
                     } else {
                         reader.abort();
@@ -76,12 +77,12 @@ var App = new Vue({
                 reader.readAsDataURL(file);
             });
 
-            if (files.length > 10 && this.photos.length === 0) {
-                alert('Можно загрузить только 10 файлов.\nСейчас вы загружаете - ' + files.length + '.\nБудут загружены первые 10 файлов.');
-            } else if (this.photos.length === 10) {
-                alert('Можно загрузить только 10 файлов.\nСейчас в дропзоне уже 10 файлов');
-            } else if (files.length + this.photos.length > 10) {
-                alert('Можно загрузить только 10 файлов. Сейчас в дропзоне уже ' + this.photos.length + '.\nСейчас вы загружаете - ' + files.length + '.\nБудут загружены ' + (10 - this.photos.length) + ' файлов.');
+            if (files.length > this.imagesLimit && this.photos.length === 0) {
+                alert(`You can load only ${this.imagesLimit} files. Right now you load ${files.length}.\nWill be loaded first ${this.imagesLimit} files`);
+            } else if (this.photos.length === this.imagesLimit) {
+                alert(`You can load only ${this.imagesLimit} files.\nIn dropzone already ${this.imagesLimit} files`);
+            } else if (files.length + this.photos.length > this.imagesLimit) {
+                alert(`You can load only ${this.imagesLimit} files.In dropzone already ${this.photos.length} files.\nRight now you load ${files.length} files.Will be loaded first ${10 - this.photos.length} files.`);
             }
 
         },

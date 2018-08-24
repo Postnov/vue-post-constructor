@@ -21,6 +21,13 @@
 				<h1>Post constructor</h1>
 
 				<div class="create__row">
+					<label for="" class="create__label">Images limit</label>
+					<input type="text" placeholder="" v-model="imagesLimit">
+				</div>
+
+
+
+				<div class="create__row">
 					<label for="" class="create__label">Title</label>
 					<input type="text" class="create__field js-typeText" v-model="title" value="">
 				</div>
@@ -31,6 +38,7 @@
 				</div>
 
 				<div class="create__row">
+					<p>Images limit - {{ imagesLimit }}</p>
 					<div id="dropzone"
 						v-on="{
 							dragleave: dropzoneDisable,
