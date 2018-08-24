@@ -20,6 +20,18 @@ var App = new Vue({
         }
     },
     methods: {
-
+        addOption() {
+            this.options.push('');
+        },
+        deleteOption(index) {
+            this.options = this.options.filter((item, i) => {
+                return index !== i;
+            });
+        },
+        deleteSurvey() {
+            this.surveyIsVisible = false;
+            this.options = [];
+            this.surveyTitle = '';
+        }
     }
 });

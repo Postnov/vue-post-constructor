@@ -49,11 +49,16 @@
 							<h2>Input servey name</h2>
 							<input v-model="surveyTitle" value="" type="text" class="create-survey__title post-field" placeholder="Survey name">
 
-							<ul v-if="options.length" class="create-survey__list"></ul>
+							<ul v-for="(item, index) in options" v-if="options.length" class="create-survey__list">
+								<li :key="index" class="create-survey__item">
+									<input v-model="options[index]" placeholder="Option name" class="create-survey__field" type="text">
+									<span class="create-survey__delete-option" v-on:click="deleteOption(index)">delete option</span>
+								</li>
+							</ul>
 
 							<div class="survey-buttons">
-								<button class="create-survey__btn-option btn">add option</button>
-								<button v-on:click="surveyIsVisible = false" class="create-survey__btn-option btn btn-danger">delete survey</button>
+								<button class="create-survey__btn-option btn" v-on:click="addOption">add option</button>
+								<button v-on:click="deleteSurvey" class="create-survey__btn-option btn btn-danger">delete survey</button>
 							</div>
 						</div>
 					</div>
@@ -84,7 +89,12 @@
 				<div v-if="surveyIsVisible" class="preview__survey preview-survey">
 					<p class="preview-survey__title">{{printSurveyTitle || 'Input survey title'}}</p>
 
-					<div v-if="options.length" class="preview-survey__list"></div>
+					<div v-if="options.length" v-for="(item, index) in options" class="preview-survey__list">
+							<label :key="index" v-bind:for="'option-' + index" class="preview-survey__label">
+								<input v-bind:id="'option-' + index" name="survey-answer" class="preview-survey__radio" type="radio">
+								<span class="preview-survey__label-text">{{ item }}</span>
+							</label>
+					</div>
 				</div>
 			</div>
 
