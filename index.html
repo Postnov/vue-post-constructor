@@ -31,12 +31,23 @@
 				</div>
 
 				<div class="create__row">
-					<div class="droparea">
+					<div id="dropzone"
+						v-on="{
+							dragleave: dropzoneDisable,
+							drop: [dropZoneDrop, dropzoneDisable],
+							dragenter: dropzoneEnable,
+							dragover: dropzoneEnable}"
+						v-bind:class="{hightlight: dropzoneIsActive}" class="droparea">
+
 						<span class="droparea__text">Drop image or</span>
 						<input type="file" class="droparea__input" multiple accept="image/*">
 						<label class="button btn" for="fileElem">choose image</label>
 
-						<ul v-if="photos.length" class="droparea__list"></ul>
+						<ul v-if="photos.length" class="droparea__list">
+							<li v-for="(src, index) in photos" :key="index" class="droparea__item" v-on:click="deleteImage(index)">
+								<img v-bind:src="src" >
+							</li>
+						</ul>
 					</div>
 				</div>
 
@@ -49,8 +60,8 @@
 							<h2>Input servey name</h2>
 							<input v-model="surveyTitle" value="" type="text" class="create-survey__title post-field" placeholder="Survey name">
 
-							<ul v-for="(item, index) in options" v-if="options.length" class="create-survey__list">
-								<li :key="index" class="create-survey__item">
+							<ul v-if="options.length" class="create-survey__list">
+								<li v-for="(item, index) in options" :key="index" class="create-survey__item">
 									<input v-model="options[index]" placeholder="Option name" class="create-survey__field" type="text">
 									<span class="create-survey__delete-option" v-on:click="deleteOption(index)">delete option</span>
 								</li>
@@ -83,7 +94,11 @@
 				<h2 class="preview__title">{{ printTitle || 'Input post title' }}</h2>
 				<p  class="preview__subtitle">{{ printDescribe || 'Input post describe' }}</p>
 				<div v-if="photos.length" class="preview__slider preview-slider">
-					<ul class="preview-slider__list"></ul>
+					<ul class="preview-slider__list">
+						<li v-for="(src, index) in photos" :key="index" class="preview-slider__item dp-slide">
+							<img v-bind:src="src">
+						</li>
+					</ul>
 				</div>
 
 				<div v-if="surveyIsVisible" class="preview__survey preview-survey">
