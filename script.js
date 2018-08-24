@@ -82,7 +82,7 @@ var App = new Vue({
             } else if (this.photos.length === this.imagesLimit) {
                 alert(`You can load only ${this.imagesLimit} files.\nIn dropzone already ${this.imagesLimit} files`);
             } else if (files.length + this.photos.length > this.imagesLimit) {
-                alert(`You can load only ${this.imagesLimit} files.In dropzone already ${this.photos.length} files.\nRight now you load ${files.length} files.Will be loaded first ${10 - this.photos.length} files.`);
+                alert(`You can load only ${this.imagesLimit} files. In dropzone already ${this.photos.length} files.\nRight now you load ${files.length} files. Will be loaded first ${this.imagesLimit - this.photos.length} files.`);
             }
 
         },
