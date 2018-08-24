@@ -22,12 +22,12 @@
 
 				<div class="create__row">
 					<label for="" class="create__label">Title</label>
-					<input type="text" class="create__field js-typeText" data-target=".preview__title">
+					<input type="text" class="create__field js-typeText" v-model="title" value="">
 				</div>
 
 				<div class="create__row">
 					<label for="" class="create__label">Describe</label>
-					<textarea type="text" class="create__field js-typeText" data-target=".preview__subtitle"></textarea>
+					<textarea type="text" class="create__field js-typeText" v-model="describe"></textarea>
 				</div>
 
 				<div class="create__row">
@@ -44,10 +44,10 @@
 					<div class="create__survey create-survey">
 						<button id="add-survey" class="create-survey__btn btn">Add survey</button>
 
-						<div id="survey-content" class="create-survey__content hidden">
+						<div id="survey-content" class="create-survey__content">
 
 							<h2>Input servey name</h2>
-							<input type="text" id="title-survey" class="create-survey__title post-field js-typeText" data-target=".preview-survey__title" placeholder="Survey name">
+							<input type="text" id="title-survey" class="create-survey__title post-field" placeholder="Survey name">
 
 							<ul class="create-survey__list"></ul>
 
@@ -75,8 +75,8 @@
 			<div class="preview">
 				<!-- <h1>Post preview</h1> -->
 
-				<h2 id="preview__title" class="preview__title">Input post title</h2>
-				<p  id="preview__subtitle" class="preview__subtitle">Input post describe</p>
+				<h2 id="preview__title" class="preview__title">{{ printTitle || 'Input post title' }}</h2>
+				<p  id="preview__subtitle" class="preview__subtitle">{{ printDescribe || 'Input post describe' }}</p>
 				<div class="preview__slider preview-slider">
 					<ul id="preview-slider-list" class="preview-slider__list"></ul>
 				</div>
