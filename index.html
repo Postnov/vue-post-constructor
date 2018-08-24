@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Post constructor by Daniil Postnov</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<main id="app">
+
+
+		<a class="github-icon" target="_blank" href="https://github.com/Postnov/vue-post-constructor">
+			<img src="images/github-icon.png" class="github-icon__img" alt="">
+		</a>
+
+		<div class="container">
+
+			<!-- Start Create Post -->
+
+			<div class="create">
+				<h1>Post constructor</h1>
+
+				<div class="create__row">
+					<label for="" class="create__label">Title</label>
+					<input type="text" class="create__field js-typeText" data-target=".preview__title">
+				</div>
+
+				<div class="create__row">
+					<label for="" class="create__label">Describe</label>
+					<textarea type="text" class="create__field js-typeText" data-target=".preview__subtitle"></textarea>
+				</div>
+
+				<div class="create__row">
+					<div id="dropzone" class="droparea">
+						<span class="droparea__text">Drop image or</span>
+						<input type="file" id="fileElem" multiple accept="image/*">
+						<label class="button btn" for="fileElem">choose image</label>
+
+						<ul id="droplist" class="droparea__list"></ul>
+					</div>
+				</div>
+
+				<div class="create__row">
+					<div class="create__survey create-survey">
+						<button id="add-survey" class="create-survey__btn btn">Add survey</button>
+
+						<div id="survey-content" class="create-survey__content hidden">
+
+							<h2>Input servey name</h2>
+							<input type="text" id="title-survey" class="create-survey__title post-field js-typeText" data-target=".preview-survey__title" placeholder="Survey name">
+
+							<ul class="create-survey__list"></ul>
+
+							<div class="survey-buttons">
+								<button id="add-option" class="create-survey__btn-option btn">add option</button>
+								<button id="delete-survey" class="create-survey__btn-option btn btn-danger">delete survey</button>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+
+			</div>
+
+
+			<!-- End Create Post -->
+
+
+
+			<!-- Start Preview Post -->
+
+
+
+			<div class="preview">
+				<!-- <h1>Post preview</h1> -->
+
+				<h2 id="preview__title" class="preview__title">Input post title</h2>
+				<p  id="preview__subtitle" class="preview__subtitle">Input post describe</p>
+				<div class="preview__slider preview-slider">
+					<ul id="preview-slider-list" class="preview-slider__list"></ul>
+				</div>
+
+				<div class="preview__survey preview-survey hidden">
+					<p class="preview-survey__title">Input survey title</p>
+
+					<div class="preview-survey__list"></div>
+				</div>
+			</div>
+
+
+			<!-- End Preview Post -->
+
+
+		</div>
+
+
+	</main>
+
+	<script src="dpslider.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script src="script.js"></script>
+</body>
+</html>
