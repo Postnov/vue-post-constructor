@@ -77,14 +77,18 @@ var App = new Vue({
                 reader.readAsDataURL(file);
             });
 
-            if (files.length > this.imagesLimit && this.photos.length === 0) {
-                alert(`You can load only ${this.imagesLimit} files. Right now you load ${files.length}.\nWill be loaded first ${this.imagesLimit} files`);
-            } else if (this.photos.length === this.imagesLimit) {
-                alert(`You can load only ${this.imagesLimit} files.\nIn dropzone already ${this.imagesLimit} files`);
-            } else if (files.length + this.photos.length > this.imagesLimit) {
-                alert(`You can load only ${this.imagesLimit} files. In dropzone already ${this.photos.length} files.\nRight now you load ${files.length} files. Will be loaded first ${this.imagesLimit - this.photos.length} files.`);
-            }
+            var stringAlert;
 
+            if (files.length > this.imagesLimit && this.photos.length === 0) {
+                stringAlert = `You can load only ${this.imagesLimit} files. Right now you load ${files.length}.\nWill be loaded first ${this.imagesLimit} files`;
+                swal("Error", stringAlert, "error");
+            } else if (this.photos.length === this.imagesLimit) {
+                 stringAlert = `Dropzone is crowded and already containts ${this.imagesLimit} files`;
+                swal("Error", stringAlert, "error");
+            } else if (files.length + this.photos.length > this.imagesLimit && this.photos.length !== this.imagesLimit) {
+                 stringAlert = `Dropzone is crowded. Image limit - ${this.imagesLimit}.\nWill be loaded ${this.imagesLimit - this.photos.length} files from your drop`;
+				swal("Error", stringAlert, "error");
+            }
         },
         deleteImage(index) {
             console.log(index);

@@ -1,5 +1,7 @@
 /* Common style */
 
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,700');
+
 body {
 	background-color: #aab1a4; /*#26A69A*/
 	padding-top: 50px;
@@ -7,6 +9,7 @@ body {
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
+	font-family: 'Roboto', sans-serif;
 }
 
 *{
