@@ -38,7 +38,7 @@
 				</div>
 
 				<div class="create__row">
-					<p>Images limit - {{ imagesLimit }}</p>
+					<p>Images {{ photos.length }}/{{ imagesLimit }}</p>
 					<div id="dropzone"
 						v-on="{
 							dragleave: dropzoneDisable,
