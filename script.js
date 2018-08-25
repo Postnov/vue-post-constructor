@@ -24,6 +24,7 @@ var App = new Vue({
 
     updated() {
         slider.resetWidth();
+        slider.translateToStart();
     },
 
     computed: {
@@ -42,9 +43,7 @@ var App = new Vue({
             this.options.push('');
         },
         deleteOption(index) {
-            this.options = this.options.filter((item, i) => {
-                return index !== i;
-            });
+            this.options = this.options.filter((item, i) => index !== i);
         },
         deleteSurvey() {
             this.surveyIsVisible = false;
@@ -58,13 +57,7 @@ var App = new Vue({
             this.dropzoneIsActive = false;
         },
         dropZoneDrop(type) {
-            var files;
-
-            if(type === 'input') {
-                files = event.target.files
-            }else {
-                files = event.dataTransfer.files;
-            }
+            var files = event.target.files || event.dataTransfer.files || [] ;
 
             files = [... files];
 
@@ -98,10 +91,7 @@ var App = new Vue({
             }
         },
         deleteImage(index) {
-            console.log(index);
-            this.photos = this.photos.filter((item, i) => {
-                return index !== i;
-            });
+            this.photos = this.photos.filter((item, i) => index !== i);
         }
 
     }
