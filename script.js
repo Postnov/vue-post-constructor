@@ -57,8 +57,15 @@ var App = new Vue({
         dropzoneDisable() {
             this.dropzoneIsActive = false;
         },
-        dropZoneDrop() {
-            var files = event.dataTransfer.files;
+        dropZoneDrop(type) {
+            var files;
+
+            if(type === 'input') {
+                files = event.target.files
+            }else {
+                files = event.dataTransfer.files;
+            }
+
             files = [... files];
 
             files.forEach((file, index) => {
